@@ -1,1 +1,0 @@
-document.getElementById("content").innerText = "hello from javascript";

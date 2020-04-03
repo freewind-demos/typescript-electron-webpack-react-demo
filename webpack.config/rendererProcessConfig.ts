@@ -5,13 +5,13 @@ import path from 'path';
 const rendererProcessConfig: Configuration = {
   mode: 'development',
   target: 'electron-renderer',
-  entry: path.resolve(__dirname, '../src/renderer/index.ts'),
+  entry: path.resolve(__dirname, '../src/renderer/index.tsx'),
   output: {
     path: path.resolve(__dirname, '../dist/renderer'),
     filename: 'index.bundle.js',
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [{
@@ -21,15 +21,13 @@ const rendererProcessConfig: Configuration = {
         {loader: 'css-loader'},
       ],
     }, {
-      test: /\.ts$/,
+      test: /\.tsx?$/,
       loader: 'ts-loader',
       exclude: /node_modules/,
     }],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../src/renderer/index.html'),
-    }),
+    new HtmlWebpackPlugin(),
   ],
 };
 
